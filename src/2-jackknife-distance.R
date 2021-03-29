@@ -166,7 +166,11 @@ foreach(p = project_list, .packages = 'detect') %dopar%
     m4 = cmulti(x$Y | x$D ~ x$C$roadside + x$C$ForestOnly_5x5, type="dis")
     m5 = cmulti(x$Y | x$D ~ x$C$roadside * x$C$ForestOnly_5x5, type="dis")
     distance_list <- list(m1, m2, m3, m4, m5)
-    save(distance_list, file = paste0("data/distance/", sp, "/", p, ".rda"))  
+    save(distance_list, file = paste0("data/distance/",
+                                      sp,
+                                      "/",
+                                      gsub(":", "_", p, fixed = TRUE),
+                                      ".rda"))  
   }
 }
 
