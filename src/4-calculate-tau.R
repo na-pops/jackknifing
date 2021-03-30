@@ -48,6 +48,8 @@ foreach (sp = species, .packages = 'MASS') %dopar%
     dis_reduced <- dis[which(dis$model == i), ]
     sim_data <- data.frame(Project = rep(projects,
                                          each = length(roadside)),
+                           Project_n = rep(dis_reduced$n[1] - dis_reduced$n,
+                                            each = length(roadside)),
                            Intercept = rep(1,
                                            times = length(projects) *
                                              length(roadside)),
