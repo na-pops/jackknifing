@@ -19,8 +19,8 @@ n_dis_models <- 5
 
 species <- list.files(path = "data/distance")
 
-sp_coef_list <- vector(mode = "list", length = length(species))
-names(sp_coef_list) <- species
+cluster <- makeCluster(12, type = "PSOCK")
+registerDoParallel(cluster)
 
 foreach (sp = species, .packages = 'detect') %dopar%
 {
@@ -91,6 +91,6 @@ foreach (sp = species, .packages = 'detect') %dopar%
   save(projects, file = paste0(dir, "coef/project_list.rda"))
 }
 
-
+stopCluster(cluster)
 
 
